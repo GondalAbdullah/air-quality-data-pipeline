@@ -1,0 +1,46 @@
+# --- Python ---
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# --- Environment / secrets ---
+.env
+*.key
+
+# --- Data (bronze/silver/gold are generated, not committed) ---
+data/
+!data/.gitkeep
+
+# --- DuckDB ---
+*.duckdb
+*.duckdb.wal
+
+# --- dbt ---
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+dbt_project/.user.yml
+# keep the reference copy in repo, but never commit one with real secrets in it
+# (this project's profiles.yml has no secrets, so it's fine to track — remove this
+# line if you ever put credentials directly in it instead of env vars)
+
+# --- Dagster ---
+dagster_project/storage/
+dagster_project/.dagster_home/
+*.dagster_home
+
+# --- Streamlit ---
+.streamlit/secrets.toml
+
+# --- Terraform ---
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/.terraform.lock.hcl
+
+# --- OS / editor ---
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,14 @@
+# models/staging/sources.yml
+version: 2
+
+sources:
+  - name: bronze
+    tables:
+      - name: weather_raw
+        config:
+          meta:
+            external_location: "data/bronze/weather/*/*.json"
+      - name: openaq_raw
+        config:
+          meta:
+            external_location: "data/bronze/openaq/*/*.json"

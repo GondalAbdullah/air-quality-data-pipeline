@@ -1,0 +1,8 @@
+# dbt_project/profiles.yml (and update ~/.dbt/profiles.yml to match)
+aq_pipeline:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: '../data/warehouse.duckdb'
+      threads: 4

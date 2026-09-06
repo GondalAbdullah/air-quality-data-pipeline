@@ -1,0 +1,13 @@
+# dbt_project.yml
+name: 'aq_pipeline'
+version: '1.0.0'
+profile: 'aq_pipeline'
+
+model-paths: ["models"]
+
+models:
+  aq_pipeline:
+    staging:
+      +materialized: view      # silver = views, cheap to recompute
+    marts:
+      +materialized: table     # gold = physical tables, fast for the dashboard to query

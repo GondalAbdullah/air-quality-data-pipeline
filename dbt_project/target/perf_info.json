@@ -1,0 +1,51 @@
+{
+    "path_count": 124,
+    "parsed_path_count": 124,
+    "static_analysis_path_count": 3,
+    "static_analysis_parsed_path_count": 3,
+    "is_partial_parse_enabled": true,
+    "is_static_analysis_enabled": true,
+    "read_files_elapsed": 0.037951148000502144,
+    "load_macros_elapsed": 1.1672199460008414,
+    "parse_project_elapsed": 1.1548425929995574,
+    "patch_sources_elapsed": 0.04529815000023518,
+    "process_manifest_elapsed": 0.04400071100099012,
+    "load_all_elapsed": 2.591711053999461,
+    "projects": [
+        {
+            "project_name": "aq_pipeline",
+            "elapsed": 1.1417507979986112,
+            "parsers": [
+                {
+                    "parser": "model",
+                    "elapsed": 0.4498766570013686,
+                    "parsed_path_count": 3
+                },
+                {
+                    "parser": "test",
+                    "elapsed": 0.6862121440008195,
+                    "parsed_path_count": 2
+                }
+            ],
+            "parsed_path_count": 5
+        },
+        {
+            "project_name": "dbt_duckdb",
+            "elapsed": 0.007357896998655633,
+            "parsers": [],
+            "parsed_path_count": 0
+        },
+        {
+            "project_name": "dbt",
+            "elapsed": 0.0055283310011873255,
+            "parsers": [
+                {
+                    "parser": "doc",
+                    "elapsed": 0.00039064099837560207,
+                    "parsed_path_count": 1
+                }
+            ],
+            "parsed_path_count": 1
+        }
+    ]
+}

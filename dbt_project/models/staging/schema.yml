@@ -1,0 +1,26 @@
+# models/staging/schema.yml
+version: 2
+
+models:
+  - name: stg_weather
+    columns:
+      - name: city
+        data_tests: [not_null]
+      - name: observed_at_utc
+        data_tests: [not_null]
+      - name: temperature_c
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: -50
+                max_value: 60
+
+  - name: stg_openaq
+    columns:
+      - name: pollutant
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['pm25', 'pm10', 'no2', 'o3', 'so2', 'co']
