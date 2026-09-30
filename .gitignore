@@ -44,3 +44,6 @@ terraform/.terraform.lock.hcl
 .DS_Store
 .vscode/
 .idea/
+
+# --- Logs ---
+logs/

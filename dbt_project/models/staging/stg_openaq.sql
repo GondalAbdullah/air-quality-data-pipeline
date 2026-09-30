@@ -14,7 +14,7 @@ by_city as (
 
 -- one row per station
 stations_exploded as (
-    select city, unnest(stations) as station from by_city
+    select fetched_at, city, unnest(stations) as station from by_city
 ),
 
 -- sensors: id -> pollutant name/units, one row per sensor a station has
@@ -39,6 +39,7 @@ sensor_lookup as (
 -- readings: one row per measurement, still only tagged with sensorsId
 readings_exploded as (
     select
+        fetched_at,
         city,
         station.location.id as station_id,
         unnest(station.measurements.results) as reading
@@ -47,6 +48,7 @@ readings_exploded as (
 
 readings as (
     select
+        fetched_at,
         city,
         station_id,
         reading.sensorsId                    as sensor_id,
@@ -68,5 +70,5 @@ inner join sensor_lookup sl
 where r.value is not null
     and r.value >= 0            -- drops the -999 sentinel and any other negative sentinels
 qualify row_number() over (
-    partition by r.station_id, r.sensor_id, r.measured_at_utc order by r.measured_at_utc
-) = 1
+    partition by r.station_id, r.sensor_id, r.measured_at_utc order by r.fetched_at desc
+) = 1  -- dedupe: keep the reading from the most recent ingestion run

@@ -17,6 +17,7 @@ by_city as (
 -- all belong to the same hour. UNNEST with the same index expands them together.
 exploded as (
     select
+        fetched_at,
         city,
         unnest(city_data.hourly.time)                as observed_at_raw,
         unnest(city_data.hourly.temperature_2m)       as temperature_c,
@@ -36,5 +37,5 @@ select
 from exploded
 where observed_at_raw is not null
 qualify row_number() over (
-    partition by city, observed_at_raw order by observed_at_raw
-) = 1  -- dedupe: if the same hour appears in two overlapping ingestion runs, keep one
+    partition by city, observed_at_raw order by fetched_at desc
+) = 1  -- dedupe: if the same hour appears in two overlapping ingestion runs, keep the latest fetch (freshest forecast/actuals)
